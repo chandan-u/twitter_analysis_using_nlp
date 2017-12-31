@@ -1,0 +1,20 @@
+*.pyc
+data/*
+data
+
+python2.7_env
+python2.7_env/*
+.ipynb_checkpoints/
+
+#spark files
+#metastore_db/*
+#metastore_db
+#spark-warehouse
+#spark-warehouse/*
+#derby.log
+
+# env files
+#python3_env
+#python3_env/*
+#python3.45_env
+#python3.45_env/*
