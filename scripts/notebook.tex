@@ -1,0 +1,595 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Similar words cluster analysis using gensim}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{To visualize word2vec learned vectors using plotly and
+tsne}\label{to-visualize-word2vec-learned-vectors-using-plotly-and-tsne}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{  }
+        
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{n+nb}{reload}\PY{p}{(}\PY{n}{sys}\PY{p}{)}
+        \PY{n}{sys}\PY{o}{.}\PY{n}{setdefaultencoding}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{utf8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        
+        
+        
+        \PY{n}{data\PYZus{}path} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{dirname}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{abspath}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{clean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{data\PYZus{}path}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} preprocessing}
+        \PY{k+kn}{import} \PY{n+nn}{preprocessor} \PY{k+kn}{as} \PY{n+nn}{p}
+        \PY{n}{p}\PY{o}{.}\PY{n}{set\PYZus{}options}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{URL}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{EMOJI}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{SMILEY}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{MENTION}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{RESERVED}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{OPT}\PY{o}{.}\PY{n}{NUMBER}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}from nltk.tokenize import word\PYZus{}tokenize}
+        \PY{c+c1}{\PYZsh{} using nltk tokenize : will even split the hashtags and their words}
+        \PY{k+kn}{from} \PY{n+nn}{nltk.corpus} \PY{k+kn}{import} \PY{n}{stopwords}
+        \PY{n}{stop\PYZus{}words} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{n}{stopwords}\PY{o}{.}\PY{n}{words}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{english}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+        
+        \PY{k+kn}{import} \PY{n+nn}{re}
+        \PY{k+kn}{import} \PY{n+nn}{string}
+        
+        \PY{n}{punctuations} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{!}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZdl{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZam{}}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{()*+,\PYZhy{}./:;\PYZlt{}=\PYZgt{}?@[}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{]\PYZca{}\PYZus{}`\PYZob{}|\PYZcb{}\PYZti{}}\PY{l+s+s1}{\PYZsq{}}        \PY{c+c1}{\PYZsh{} \PYZsq{}\PYZsh{}\PYZsq{} not included to save the space.}
+        \PY{n}{regex} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{re}\PY{o}{.}\PY{n}{escape}\PY{p}{(}\PY{n}{punctuations}\PY{p}{)}\PY{p}{)}
+        \PY{n}{regexb}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{compile}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b[}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+se}{\PYZbs{}\PYZdq{}}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        
+        \PY{n}{clean} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                         
+        \PY{k}{for} \PY{n}{tweet} \PY{o+ow}{in} \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{:}
+            
+            
+            \PY{c+c1}{\PYZsh{} clean tweet noise using tweet preprocessor}
+            \PY{n}{tweet} \PY{o}{=} \PY{n}{p}\PY{o}{.}\PY{n}{clean}\PY{p}{(}\PY{n}{tweet}\PY{p}{)}
+             
+            \PY{c+c1}{\PYZsh{} convert unicode to str to use str functions}
+            \PY{n}{tweet} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{tweet}\PY{p}{)}
+            
+            \PY{n}{tweet} \PY{o}{=} \PY{n}{regex}\PY{o}{.}\PY{n}{sub}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{tweet}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} lower casing}
+            \PY{n}{tokens} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(} \PY{n+nb}{str}\PY{o}{.}\PY{n}{lower} \PY{p}{,} \PY{n}{tweet}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+                    
+            \PY{c+c1}{\PYZsh{}remove punctuation}
+            \PY{c+c1}{\PYZsh{}tokens =  map(lambda token:regex.sub(\PYZsq{}\PYZsq{}, token), tokens)  }
+            \PY{n}{tokens} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{token}\PY{p}{:} \PY{n}{token}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{tokens}\PY{p}{)}
+                    
+            \PY{c+c1}{\PYZsh{}filter empty strings}
+            \PY{n}{tokens} \PY{o}{=} \PY{n+nb}{filter}\PY{p}{(}\PY{k}{lambda} \PY{n}{token}\PY{p}{:} \PY{n}{token} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{and} \PY{n}{token}\PY{o}{!=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{tokens} \PY{p}{)}  
+           
+                    
+            \PY{c+c1}{\PYZsh{} remove stopwords}
+            \PY{n}{tokens} \PY{o}{=} \PY{n+nb}{filter}\PY{p}{(}\PY{k}{lambda} \PY{n}{word}\PY{p}{:} \PY{n}{word} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{stop\PYZus{}words}\PY{p}{,} \PY{n}{tokens}\PY{p}{)}
+            \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{tweet}\PY{p}{:}
+                \PY{k}{print} \PY{n}{tweet}
+                \PY{k}{break}
+            \PY{n}{clean}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tokens}\PY{p}{)}
+        
+            
+            
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} create wordvectors}
+        \PY{k+kn}{import} \PY{n+nn}{gensim}
+        \PY{k+kn}{from} \PY{n+nn}{nltk.tokenize} \PY{k+kn}{import} \PY{n}{word\PYZus{}tokenize}
+         
+        \PY{n}{model} \PY{o}{=} \PY{n}{gensim}\PY{o}{.}\PY{n}{models}\PY{o}{.}\PY{n}{Word2Vec}\PY{p}{(}\PY{n}{sg}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{sentences}\PY{o}{=} \PY{n}{clean}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{w2v} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{index2word}\PY{p}{,} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{syn0}\PY{p}{)}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} create list of words and respective vectors}
+        
+        \PY{n}{vectors}\PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{k}{for} \PY{n}{word}\PY{p}{,} \PY{n}{vector} \PY{o+ow}{in} \PY{n}{w2v}\PY{o}{.}\PY{n}{iteritems}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{vectors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{vector}\PY{p}{)}
+            \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{word}\PY{p}{)}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} plot using plotly\PYZhy{}offline to display in notebooks}
+        \PY{k+kn}{import} \PY{n+nn}{plotly.graph\PYZus{}objs} \PY{k+kn}{as} \PY{n+nn}{go}
+        \PY{k+kn}{from} \PY{n+nn}{plotly.offline} \PY{k+kn}{import} \PY{n}{download\PYZus{}plotlyjs}\PY{p}{,} \PY{n}{init\PYZus{}notebook\PYZus{}mode}\PY{p}{,} \PY{n}{plot}\PY{p}{,} \PY{n}{iplot}
+        
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn.manifold} \PY{k+kn}{import} \PY{n}{TSNE}
+        
+        \PY{c+c1}{\PYZsh{} to display plotly images in notebook enable this}
+        \PY{n}{init\PYZus{}notebook\PYZus{}mode}\PY{p}{(}\PY{n}{connected}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} reduce to 2D}
+        \PY{n}{tsne} \PY{o}{=} \PY{n}{TSNE}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} transform the generated word2vec vectors}
+        \PY{n}{X\PYZus{}tsne} \PY{o}{=} \PY{n}{tsne}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{vectors}\PY{p}{)}
+        
+        \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{vectors}\PY{p}{)}
+        \PY{n}{random\PYZus{}x} \PY{o}{=} \PY{n}{X\PYZus{}tsne}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{random\PYZus{}y} \PY{o}{=} \PY{n}{X\PYZus{}tsne}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+        
+        
+        \PY{c+c1}{\PYZsh{} Plot and embed in ipython notebook!}
+        \PY{c+c1}{\PYZsh{}iplot(\PYZob{} \PYZsq{}data\PYZsq{}: [\PYZob{}\PYZdq{}x\PYZdq{}: list(X\PYZus{}tsne[:, 0]), \PYZdq{}y\PYZdq{}: list(X\PYZus{}tsne[:, 1])\PYZcb{}] \PYZcb{})}
+        \PY{c+c1}{\PYZsh{}iplot(\PYZob{} \PYZsq{}data\PYZsq{}: [\PYZob{}\PYZdq{}x\PYZdq{}: list(X\PYZus{}tsne[:, 0]), \PYZdq{}y\PYZdq{}: list(X\PYZus{}tsne[:, 1])\PYZcb{}] \PYZcb{})}
+        
+        
+        \PY{n}{iplot}\PY{p}{(}\PY{p}{[}\PY{n}{go}\PY{o}{.}\PY{n}{Scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{X\PYZus{}tsne}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{X\PYZus{}tsne}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{text}\PY{o}{=} \PY{n}{labels}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{markers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{n}{go}\PY{o}{.}\PY{n}{Marker}\PY{p}{(}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{opacity}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}86}]:} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{}news}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{topn}\PY{o}{=} \PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}86}]:} [('rt', 0.9994432330131531),
+          ('luyendyk', 0.9992803931236267),
+          ('returns', 0.9992326498031616),
+          ('jia', 0.9992016553878784),
+          ('jr', 0.9991701245307922),
+          ('recap', 0.9990851283073425),
+          ('destroying', 0.9990845322608948),
+          ('arie', 0.9990782737731934),
+          ('rooftop', 0.9990195631980896),
+          ('asia', 0.9989963173866272),
+          ('peoples', 0.9989861249923706),
+          ('\#plant', 0.9989833831787109),
+          ('return', 0.9989609718322754),
+          ('five', 0.998914897441864),
+          ('north', 0.9989104270935059),
+          ('deadline', 0.998908281326294),
+          ('show', 0.9989073872566223),
+          ('reuters', 0.9988978505134583),
+          ('premiere', 0.9988948106765747),
+          ('stocks', 0.9988686442375183),
+          ('year', 0.9988681674003601),
+          ('china', 0.998845100402832),
+          ('\#win', 0.9988411068916321),
+          ('korea', 0.9988048076629639),
+          ('solar', 0.9987714886665344),
+          ('accuse', 0.9987655878067017),
+          ('years', 0.9987477660179138),
+          ('\#usa', 0.9987453818321228),
+          ('second', 0.9987408518791199),
+          ('later', 0.9987300038337708)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{}entertainment}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{topn} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}84}]:} [('rt', 0.9979467391967773),
+          ('pips', 0.9978041648864746),
+          ('yueting', 0.9977433085441589),
+          ('jia', 0.9977428913116455),
+          ('\#news', 0.997724175453186),
+          ('second', 0.9976827502250671),
+          ('recap', 0.9976266622543335),
+          ('north', 0.9975730776786804),
+          ('luyendyk', 0.9975501894950867),
+          ('\#plant', 0.9975359439849854),
+          ('five', 0.9975337982177734),
+          ('arie', 0.9975176453590393),
+          ('returns', 0.9974873065948486),
+          ('korea', 0.9974411129951477),
+          ('jr', 0.9974309206008911),
+          ('spoiler', 0.997428297996521),
+          ('accuse', 0.9974153637886047),
+          ('sydney', 0.997401773929596),
+          ('largest', 0.997331440448761),
+          ('later', 0.9973044395446777),
+          ('show', 0.9972906112670898),
+          ('solar', 0.9972856044769287),
+          ('asia', 0.9972810745239258),
+          ('rooftop', 0.9972590804100037),
+          ('property', 0.9972583055496216),
+          ('china', 0.9972553849220276),
+          ('\#entertainmentnews', 0.9972519874572754),
+          ('premiere', 0.99721759557724),
+          ('deadline', 0.9971916079521179),
+          ('return', 0.9971801042556763)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{happy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} [('\#news', 0.9952816367149353),
+          ('rt', 0.9952754974365234),
+          ('jr', 0.9950392246246338),
+          ('sydney', 0.9948745965957642),
+          ('year', 0.9947987794876099),
+          ('doldrums', 0.9947727918624878),
+          ('pips', 0.9947243928909302),
+          ('good', 0.9947184920310974),
+          ('asia', 0.9946904182434082),
+          ('peoples', 0.9946337938308716)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cold}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{topn}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}88}]:} [('recordshattering', 0.9982421398162842),
+          ('rt', 0.9978067874908447),
+          ('\#almalki', 0.9976532459259033),
+          ('\#news', 0.997653067111969),
+          ('reuters', 0.9975708723068237),
+          ('returns', 0.9973247647285461),
+          ('rooftop', 0.9972267150878906),
+          ('north', 0.9971815347671509),
+          ('jr', 0.9971292614936829),
+          ('jia', 0.997122585773468),
+          ('return', 0.9971144199371338),
+          ('recap', 0.9971029758453369),
+          ('luyendyk', 0.9970871806144714),
+          ('largest', 0.9970839619636536),
+          ('korea', 0.9970560073852539),
+          ('\#ilovehiphop', 0.9970091581344604),
+          ('\#usa', 0.9969328045845032),
+          ('arie', 0.9968781471252441),
+          ('china', 0.9968752861022949),
+          ('years', 0.9968712329864502),
+          ('protesters', 0.9968491792678833),
+          ('stocks', 0.9968310594558716),
+          ('property', 0.9968093037605286),
+          ('solar', 0.9968092441558838),
+          ('india\textbackslash{}xe2\textbackslash{}x80\textbackslash{}x99s', 0.9967963695526123),
+          ('asia', 0.9967807531356812),
+          ('five', 0.9967674016952515),
+          ('\#win', 0.9967617988586426),
+          ('alabama', 0.9967589378356934),
+          ('arctic', 0.9967539310455322)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{n}{model}\PY{o}{.}\PY{n}{wv}\PY{o}{.}\PY{n}{most\PYZus{}similar}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsh{}tech}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{topn} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}89}]:} [('\#news', 0.993334174156189),
+          ('stood', 0.9932348132133484),
+          ('misses', 0.9931559562683105),
+          ('year', 0.9930189847946167),
+          ('plundering', 0.992933988571167),
+          ('rt', 0.9928831458091736),
+          ('years', 0.9928643107414246),
+          ('sydney', 0.9928523302078247),
+          ('returns', 0.9928321242332458),
+          ('rooftop', 0.9927963614463806),
+          ('recap', 0.9927739500999451),
+          ('jia', 0.9927682876586914),
+          ('stocks', 0.9927046895027161),
+          ('via', 0.9926981329917908),
+          ('return', 0.992676854133606),
+          ('web', 0.9925916790962219),
+          ('largest', 0.9925662279129028),
+          ('commissions', 0.9925294518470764),
+          ('yueting', 0.9925225973129272),
+          ('asia', 0.9925095438957214),
+          ('india\textbackslash{}xe2\textbackslash{}x80\textbackslash{}x99s', 0.9924795031547546),
+          ('later', 0.9924668073654175),
+          ('deadline', 0.9924377799034119),
+          ('second', 0.9924129247665405),
+          ('\#canada', 0.9923984408378601),
+          ('doldrums', 0.9923722147941589),
+          ('alabama', 0.9923614263534546),
+          ('pips', 0.9923609495162964),
+          ('\#celebritynews', 0.9923457503318787),
+          ('show', 0.992328405380249)]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
