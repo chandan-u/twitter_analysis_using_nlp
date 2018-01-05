@@ -1,7 +1,7 @@
 # Tweets analysis using NLP
 
 An interesting technical story and findings when trying to analyze the tweets of hashtag "#news".
-And in the process observed how hashtags affect the performance of word2vec, wordlouds visualization. And hashtags are not completely useless. Hashtags can be used for categorizing the tweets/as labels. This project clearly explains why
+And in the process observed how hashtags affect the performance of word2vec, wordlouds visualization. And hashtags are not completely bad either. Hashtags can be used for categorizing the tweets or as labels. This project clearly explains why:
 
 
 ## Data Gathering
@@ -107,7 +107,7 @@ Objective was to find word clusters using word2vec and Observe patterns in clust
 
 ### Observaton
 
-**"cold" too has caputred all the required words such as recordshattering. Some interesting irregularites though:**
+** word2vec similarity for "cold" has caputred all the related words such as "recordshattering" etc. Some interesting irregularites are present though:**
 
 1. I wonder why florida is here on the top?
      there is  a valid tweet abt florida in the data:
@@ -115,12 +115,11 @@ Objective was to find word clusters using word2vec and Observe patterns in clust
      *"(Reuters) - A rare winter storm hit the U.S. Southeast on Wednesday,
       bringing Florida's capital its first snow in three decades"*
 
-2. Why is Israel vecotor closer with cold ?
+2. Why is Israel vector closer with cold ?
 
-     a. The reason is simple, these two are not related to cold. But some of israili channels reported the news and have, included #israel in the tweet for their publicity. It is just that.
+     a. The reason is simple: These two are not related to cold. But some of Israel channels reported the news and have, included #israel in the tweet for publicity. It is just that.
 
-     b. In some cases, the tweets include daily news summary of all the headlines. In which case you can expect different news ,
-     to be in the same sentence. But word2vec will fail ove such a dataset.
+     b. In some cases, the tweets include daily news summary of all the headlines. In which case you can expect different news ,to be in the same sentence. But word2vec will fail over such a dataset.
 
      c. EX: *#israel #ynet #news broadcast by #emetnewspress s korea offers to talk with north on olympics cooperation,2018-01-02 06*
 
@@ -175,8 +174,12 @@ model.wv.most_similar("cold", topn=30)
  ```
 
 
+No more israel in words closer to cold :)
 
- ## HashTag Analysis + topic Analysis
+TODO: The above analysis can be expanded to cluster tweets itself by averaging document vectors using word vectors. 
+
+
+## HashTag Analysis + topic Analysis
 
  [Analysis Notebook](http://htmlpreview.github.io/?https://raw.githubusercontent.com/chandan-u/twitter_analysis_using_nlp/master/doc/Hashtag%20Analysis.html)
 
@@ -215,8 +218,3 @@ and many more.
 
 
 TODO: The above code can be expanded just to handle hashtags/ or just selected pos tags.
-
-
-
-
-Let's try to do topic analysis across time, to get some interesting insights:
