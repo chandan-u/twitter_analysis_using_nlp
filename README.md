@@ -176,7 +176,7 @@ model.wv.most_similar("cold", topn=30)
 
 No more israel in words closer to cold :)
 
-TODO: The above analysis can be expanded to cluster tweets itself by averaging document vectors using word vectors. 
+TODO: The above analysis can be expanded to cluster tweets itself by averaging document vectors using word vectors.
 
 
 ## HashTag Analysis + topic Analysis
@@ -218,3 +218,12 @@ and many more.
 
 
 TODO: The above code can be expanded just to handle hashtags/ or just selected pos tags.
+
+
+
+
+## AIRFLOW DAGS:
+
+Inlcuded Appache Airflow DAGs which can be used to schedule the grabbers which collet the streaming data.
+
+It can be used for pipelining
