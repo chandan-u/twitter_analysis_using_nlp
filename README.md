@@ -60,6 +60,8 @@ NOTE: All the analysis scripts are present in the ./scripts/*.ipynb. They are al
 
 ## Analysis of Words/ngrams (Word Count Analysis.ipynb):
 
+[Analysis Notebook](https://htmlpreview.github.io/?https://raw.githubusercontent.com/chandan-u/twitter_analysis_using_nlp/master/doc/Word%20Count%20Analysis.html)
+
 An analysis of words in the tweets using word count and word clouds
 
 ### Types of analysis performed:
@@ -92,6 +94,8 @@ for all bigrams analysis: stopwords have been retained (to maintain the nautre o
 
 
 Objective was to find word clusters using word2vec and Observe patterns in clustering
+
+[Analysis Notebook](http://htmlpreview.github.io/?https://raw.githubusercontent.com/chandan-u/twitter_analysis_using_nlp/master/doc/Similar%20words%20cluster%20analysis%20using%20gensim.html)
 
 
 ### Types of Analysis: (Analyize similarities to word "cold" and see how well its clustering the words)
@@ -172,7 +176,9 @@ model.wv.most_similar("cold", topn=30)
 
 
 
- ## HashTag Analysis + topic Analysis ()
+ ## HashTag Analysis + topic Analysis
+
+ [Analysis Notebook](http://htmlpreview.github.io/?https://raw.githubusercontent.com/chandan-u/twitter_analysis_using_nlp/master/doc/Hashtag%20Analysis.html)
 
  This script analyzes hashtags alone occured in the tweets
 
