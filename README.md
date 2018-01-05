@@ -1,6 +1,8 @@
 # Tweets analysis using NLP
 
 An interesting technical story and findings when trying to analyze the tweets of hashtag "#news".
+And in the process observed how hashtags affect the performance of word2vec, wordlouds visualization. And hashtags are not completely useless. Hashtags can be used for categorizing the tweets/as labels. This project clearly explains why
+
 
 ## Data Gathering
 
@@ -52,7 +54,7 @@ This project includes three different analysis:
 2. Analysis on hashtags
 3. Analysis on word Clusters using word2vec
 
-NOTE: All the analysis scripts are present in the ./scripts/*.ipynb. They are all jupyeter notebooks.
+NOTE: All the analysis scripts are present in the ./scripts/*.ipynb. They are all jupyeter notebooks. Also included HTML files in "./doc/" folder
 
 
 
