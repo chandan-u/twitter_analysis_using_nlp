@@ -195,7 +195,7 @@ From the above chart we could clearly see the various hot topics in twitter asoc
 ### Topic Evolution with time:
 
 
-!["Topic Evolution with time"](../doc/img/Topic_evolution_with_time.png)
+!["Topic Evolution with time"](https://github.com/chandan-u/twitter_analysis_using_nlp/blob/master/doc/img/Topic_evolution_with_time.png)
 
 As you can see in the above plot, the word "four" has more importance across the entire time period. So I looked back into the data to see why and found some tweets:
 
