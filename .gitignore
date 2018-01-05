@@ -2,6 +2,9 @@
 data/*
 data
 
+third_party
+third_party/*
+
 python2.7_env
 python2.7_env/*
 .ipynb_checkpoints/
